@@ -1,0 +1,149 @@
+Microsoft (R) Windows Script Host Version 5.8
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+There are 5 profiles on target computer.
+Excluding: bloombergtraining
+Deleted: SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList\S-1-5-21-616218830-3289643503-266253383-500
+deleted: C:\Users\Administrator
+Deleted: C:\Windows\Prefetch
+Deleted: C:\Windows\Temp
+Microsoft (R) Windows Script Host Version 5.8
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+There are 5 profiles on target computer.
+Excluding: bloombergtraining
+Deleted: SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList\S-1-5-21-616218830-3289643503-266253383-500
+deleted: C:\Users\Administrator
+Deleted: C:\Windows\Prefetch
+Deleted: C:\Windows\Temp
+Script completed!
+Microsoft (R) Windows Script Host Version 5.8
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Deleting all users
+There are 2 profiles on target computer.
+Deleting user: datn
+Deleted: SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList\S-1-5-21-1343024091-1844237615-682003330-5713
+Deleted: SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList\S-1-5-21-1343024091-1844237615-682003330-5713
+deleted: C:\Users\datn
+Excluding: bloombergtraining
+Successfully deleted orphan home folder: C:\Users\datn
+Clearing temp folders
+Excluding user: bloombergtraining
+Deleted: C:\Windows\Prefetch
+Deleted: C:\Windows\Temp
+Rebooting computer...
+Script completed!
+RUN AT 16:50:51.44 Wed 22/06/2016 
+Microsoft (R) Windows Script Host Version 5.8
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Deleting all users
+There are 1 profiles on target computer.
+Excluding: bloombergtraining
+Successfully deleted orphan home folder: C:\Users\datn
+Clearing temp folders
+Excluding user: bloombergtraining
+Deleted: C:\Windows\Prefetch
+Deleted: C:\Windows\Temp
+Rebooting computer...
+Script completed!
+                     RUN AT 16:54:33.54 Wed 22/06/2016 
+Microsoft (R) Windows Script Host Version 5.8
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Deleting all users
+There are 1 profiles on target computer.
+Excluding: bloombergtraining
+Clearing temp folders
+Excluding user: bloombergtraining
+Deleted: C:\Windows\Prefetch
+Deleted: C:\Windows\Temp
+Rebooting computer...
+Script completed!
+                     RUN AT 16:56:49.75 Wed 22/06/2016 
+Microsoft (R) Windows Script Host Version 5.8
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Deleting all users
+There are 1 profiles on target computer.
+Excluding: bloombergtraining
+Clearing temp folders
+Excluding user: bloombergtraining
+Deleted: C:\Windows\Prefetch
+Deleted: C:\Windows\Temp
+Rebooting computer...
+Script completed!
+                     RUN AT 16:59:44.54 Wed 22/06/2016 
+Microsoft (R) Windows Script Host Version 5.8
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Deleting all users
+There are 1 profiles on target computer.
+Excluding: bloombergtraining
+Clearing temp folders
+Excluding user: bloombergtraining
+Deleted: C:\Windows\Prefetch
+Deleted: C:\Windows\Temp
+Rebooting computer...
+Script completed!
+                     RUN AT 17:05:55.52 Wed 22/06/2016 
+                     RUN AT 17:08:42.40 Wed 22/06/2016 
+Deleting all users
+There are 1 profiles on target computer.
+Excluding: bloombergtraining
+Clearing temp folders
+Excluding user: bloombergtraining
+Deleted: C:\Windows\Prefetch
+Deleted: C:\Windows\Temp
+Script completed!
+                     RUN AT 11:04:01.11 Thu 23/06/2016 
+Deleting all users
+There are 2 profiles on target computer.
+Deleting user: dngu5293
+Deleted Registry Key: SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList\S-1-5-21-1343024091-1844237615-682003330-12114
+Deleted User Folder: C:\Users\dngu5293
+Excluding: bloombergtraining
+Clearing temp folders
+Excluding user: bloombergtraining
+Deleted: C:\Windows\Prefetch
+Deleted: C:\Windows\Temp
+Script completed!
+
+
+--------------------------------------------------------------------
+                     RUN AT 11:26:49.77 Thu 23/06/2016 
+--------------------------------------------------------------------
+Deleting all users
+There are 1 profiles on target computer.
+Excluding: bloombergtraining
+Clearing temp folders
+Excluding user: bloombergtraining
+Deleted: C:\Windows\Prefetch
+Deleted: C:\Windows\Temp
+Defraging computer...
+Rebooting computer...
+Script completed!
+--------------------------------------------------------------------
+                  COMPLETED AT 11:36:59.06 Thu 23/06/2016 
+--------------------------------------------------------------------
+
+----------------------------------------------------------------------------------------------------------
+                     RUN AT 12:08:30.22 Thu 23/06/2016 
+--------------------------------------------------------------------
+Deleting all users
+There are 2 profiles on target computer.
+Deleting user: datn
+Deleted Registry Key: SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList\S-1-5-21-1343024091-1844237615-682003330-5713
+Deleted User Folder: C:\Users\datn
+Excluding: bloombergtraining
+Clearing temp folders
+Excluding user: bloombergtraining
+Deleted: C:\Windows\Prefetch
+Deleted: C:\Windows\Temp
+Defraging computer...
+Rebooting computer...
+Script completed!
+----------------------------------------------------------------------------------------------------------
+                  COMPLETED AT 12:08:37.50 Thu 23/06/2016 
+----------------------------------------------------------------------------------------------------------
