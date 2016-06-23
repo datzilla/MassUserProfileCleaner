@@ -1,20 +1,19 @@
-The MassUserProfilesCleaner App is located here:
-N:\IT\Desktop Services\Helpdesk Scripts\MassUserProfilesCleaner
+Mass User Profiles Cleaner is an administrative tool written in VBScript & Batch Script to safely delete user profiles on remote computers. This tool has been tested to run on Windows 7 Enterprise. The tool utilises System Internal's 'PsEXEC.exe' to execute Batch and VBScript on the remote computer.
 
-You will need to execute: N:\IT\Desktop Services\Helpdesk Scripts\MassUserProfilesCleaner\MassUserProfilesCleaner.vbs
-As usual, you control which computer to execute by commenting/uncommenting computers names in PC_List.txt
+Requirements:
+- Windows 7
+- Files and Print Sharing and Admin Share enabled on remote computer
+- Remote Management must be enabled on remote computer
+- Administrative user account on remote computer
 
-You will need to copy this to your computer and share the Logs folder to everyone+writable. All executions on the remote computers will be saved centrally in that shared location.
 
-The Batch files  that gets executed on the remote computer will run the profile cleaner VBScript. It’s located here:
-N:\IT\Desktop Services\Helpdesk Scripts\MassUserProfilesCleaner\UserProfilesCleaner\run.cmd.
+PC_List.txt contains all computers which you want to remove user profiles. The MassUserProfileCleaner.vbs VBScript will read PC_LIST.txt to obtain and cycle through the computer names to perform the profile cleaning task. The MassUserProfileCleaner.vbs VBScript will omit any computers that has ' character at the beginning of its name.
 
-You can see the command in run.cmd append the screen output to \\FEB3025\LogShare\\%COMPUTERNAME%.log. Change the computer name and LogShare to reflect the correct configuration on your computer.
-CSCRIPT /B /E:Cscript /NoLogo "%~DP0UserProfilesCleaner.vbs" removeall cleartemp defrag reboot >>\\FEB3025\LogShare\%COMPUTERNAME%.log
+MassUserProfileCleaner.vbs VBScript copies the UserProfileCleaner folder to the remote computer's C:\ drive and execute run.cmd.
+Run.cmd will execute UserProfileCleaner.vbs  with customised parameters. Make changes to run.cmd if you want to change the custom paramters.
 
-The script
--	removes all user profiles
--	clears temp
--	defrags
--	reboots at the end
--	excludes bloombergtraining
+UserProfileCleaner.vbs VBScript has the following input paramters:
+- removeall : This paramter will remove all user profiles on the computer except for the account that the script is running under.
+- exclude [username] : This paramter excludes the specified username
+- defrag : This paramter tells the VBScript to system windows defragger to defrag the computer
+- reboot : This paramter tells the VBScript to reboot the system after all tasks have been performed
