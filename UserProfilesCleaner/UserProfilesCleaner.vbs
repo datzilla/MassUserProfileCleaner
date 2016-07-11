@@ -10,6 +10,7 @@
 ' -----------|-------|---------------------------------------------------------
 ' 19/10/2015	0.05	Script created
 ' 23/06/2016    0.10    Made Profile Delete more efficient for removing all users
+' 11/07/2016 	0.15	Added ability to exclude more than one profile
 '==============================================================================
 
 option Explicit
@@ -61,9 +62,10 @@ IncludeFile strSourcePath & "\Win7DeployCommon.vbs"
 Dim strWindowsUninstallRegPath : strWindowsUninstallRegPath = "SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList"	
 Const HKLM = &H80000002	
 Dim arrProfileKeys : arrProfileKeys = Array ()
-Dim objReg
+Dim objReg, objExcludeUsers
 ' You can get to the profile list either from 64bit path or 32bit path. Both will get you the list on either platform.
 Set objReg = GetObject("WinMgmts:{impersonationLevel=impersonate}!\\.\root\default:StdRegProv")
+Set objExcludeUsers = CreateObject ("Scripting.Dictionary")
 Dim strProfileKey, strPath, objProfileFolder, objNTUserFile
 Dim strReg32 : strReg32 = GetRegCmd (32)
 Dim strReg64 : strReg64 = GetRegCmd (64)
@@ -108,7 +110,9 @@ For pos = 0 To objArgs.Count - 1
 		
 	If (LCase (objArgs.Item (pos)) = "exclude") Then
 		If pos = objArgs.Count - 1 Then WScript.Quit 1
-		strExcludeUser = objArgs.Item (pos + 1)
+		'strExcludeUser = objArgs.Item (pos + 1)
+		'Modified to handle more than one exclusive profile
+		objExcludeUsers.Add LCase (objArgs.Item (pos + 1)), Null
 		blnExcludeUser = True
 	End If
 	
@@ -268,15 +272,29 @@ If blnRemoveAll = True And blnSingleUser = False Then
 	WScript.Echo "There are " & UBound (arrProfileKeys) - 2 & " profiles on target computer."
 	
 	' Step through all profiles in the Profile List and remove them.
-	For Each strProfileKey In arrProfileKeys
-		
+	For Each strProfileKey In arrProfileKeys	
 		' If the Key ID is greater than 8 characters, this means that they are not a default system account.
 		If Len (strProfileKey) > 8 Then
 			objReg.GetExpandedStringValue HKLM, strWindowsUninstallRegPath & "\" & strProfileKey, "ProfileImagePath", strPath
 			strPath = objShell.ExpandEnvironmentStrings (strPath)
 			
+			' This section we include a way to check the current profile against a dictionary of exclusive profiles.
+			' ------------------------------------------------------------------------------------------------------
+			' You need to get the username from the Path read from the registry and check if there's a fullstop in the name
+			' If there's a fullstop in the name, this should be split up to remove the domain or the computer name part.
+			strExcludeUser = ""
+			If InStr (objFSO.GetFolder (strPath).Name, ".") Then
+				' Get the character "." position using instr
+				strExcludeUser = Left (objFSO.GetFolder (strPath).Name, InStr (objFSO.GetFolder (strPath).Name, ".") - 1)
+			Else
+				' There's no fullstop in the name, just check if it exists
+				strExcludeUser = objFSO.GetFolder (strPath).Name
+			End If
+						
 			' We need to check if this is the profile we want to exclude
-			If (strExcludeUser <> "") And (InStr (LCase (strPath), LCase (strExcludeUser)) > 0) Then
+			' Checking instring because, the folder may contain prefix or suffix if they are corrupted.
+			'If (strExcludeUser <> "") And (InStr (LCase (strPath), LCase (strExcludeUser)) > 0) Then
+			If (objExcludeUsers.Exists (LCase (strExcludeUser))) Then
 				' We are excluding the user's folder. adding the user's folder into the exclude list
 				WScript.Echo "Excluding: " & strExcludeUser
 				dctExcludeUserHome.Add LCase (strPath), ""
@@ -285,7 +303,7 @@ If blnRemoveAll = True And blnSingleUser = False Then
 				WScript.Echo "Excluding: " & objShell.ExpandEnvironmentStrings ("%USERNAME%")
 				dctExcludeUserHome.Add LCase (strPath), ""
 			Else
-				' Get user's name 
+				' Get user's name and start deleting the profile
 				WScript.Echo "Deleting user: " + objFSO.GetFolder (strPath).Name		
 				' Delete The User's Registry Entry in Profile List
 				objShell.Run """" & strReg32 & """ delete ""HKLM\" & strWindowsUninstallRegPath & "\" & strProfileKey & """ /f", 0, True
