@@ -1,6 +1,6 @@
 ' =======================================================
 ' Writen by Dat Nguyen
-' This script remotely execute another VBScript remotely.
+' This script executes another VBScript remotely.
 ' =======================================================
  Option Explicit
 
